@@ -1,0 +1,30 @@
+All|valentines|Lover Rose Bouquet|149|23|item1|valentine1-1.jpg,valentine1-2.jpg,valentine1-3.jpg
+All|valentines|Sweetheart Mixed Bouquet|129|18|item2|valentine2-1.jpg,valentine2-2.jpg,valentine2-3.jpg
+All|valentines|Blush Tulip Bunch|119|20|item3|valentine3-1.jpg,valentine3-2.jpg,valentine3-3.jpg
+All|valentines|Velvet Red Roses|179|31|item4|valentine4-1.jpg,valentine4-2.jpg,valentine4-3.jpg
+All|valentines|Pink Passion Posy|139|14|item5|valentine5-1.jpg,valentine5-2.jpg,valentine5-3.jpg
+All|valentines|Romantic Lily Spray|159|27|item6|valentine6-1.jpg,valentine6-2.jpg,valentine6-3.jpg
+All|grad|Congrats Sunflower Bunch|109|40|item1|grad1-1.jpg,grad1-2.jpg,grad1-3.jpg
+All|grad|Cap & Tassel Roses|129|22|item2|grad2-1.jpg,grad2-2.jpg,grad2-3.jpg
+All|grad|Bright Mixed Bouquet|119|36|item3|grad3-1.jpg,grad3-2.jpg,grad3-3.jpg
+All|grad|Laureate Orchid Gift|159|15|item4|grad4-1.jpg,grad4-2.jpg,grad4-3.jpg
+All|grad|Victory Daisy Posy|99|28|item5|grad5-1.jpg,grad5-2.jpg,grad5-3.jpg
+All|grad|Ceremony Carnation Set|89|19|item6|grad6-1.jpg,grad6-2.jpg,grad6-3.jpg
+All|daily|Morning Daisy Bunch|79|44|item1|daily1-1.jpg,daily1-2.jpg,daily1-3.jpg
+All|daily|Fresh Wildflower Mix|69|33|item2|daily2-1.jpg,daily2-2.jpg,daily2-3.jpg
+All|daily|Sunlit Gerbera Bouquet|85|26|item3|daily3-1.jpg,daily3-2.jpg,daily3-3.jpg
+All|daily|Sweet Pea Mini Bunch|74|30|item4|daily4-1.jpg,daily4-2.jpg,daily4-3.jpg
+All|daily|Calm Lavender Wrap|95|21|item5|daily5-1.jpg,daily5-2.jpg,daily5-3.jpg
+All|daily|Carefree Mixed Stems|89|29|item6|daily6-1.jpg,daily6-2.jpg,daily6-3.jpg
+All|flowerstand|Grand Purple Lily Stand|249|12|item1|flowerstand1-1.jpg,flowerstand1-2.jpg,flowerstand1-3.jpg
+All|flowerstand|Classic Peony Stand|269|17|item2|flowerstand2-1.jpg,flowerstand2-2.jpg,flowerstand2-3.jpg
+All|flowerstand|Elegant Rose Pedestal|299|9|item3|flowerstand3-1.jpg,flowerstand3-2.jpg,flowerstand3-3.jpg
+All|flowerstand|Prosperity Chrysanthemum Stand|239|14|item4|flowerstand4-1.jpg,flowerstand4-2.jpg,flowerstand4-3.jpg
+All|flowerstand|Luxe Orchid Display|279|11|item5|flowerstand5-1.jpg,flowerstand5-2.jpg,flowerstand5-3.jpg
+All|flowerstand|Deluxe Mixed Stand|259|13|item6|flowerstand6-1.jpg,flowerstand6-2.jpg,flowerstand6-3.jpg
+All|cny|Prosperity Peony Stand|329|20|item1|cny1-1.jpg,cny1-2.jpg,cny1-3.jpg
+All|cny|Fortune Red Rose Bouquet|199|25|item2|cny2-1.jpg,cny2-2.jpg,cny2-3.jpg
+All|cny|Lucky Gold Lily Bunch|219|18|item3|cny3-1.jpg,cny3-2.jpg,cny3-3.jpg
+All|cny|Spring Blossom Basket|249|22|item4|cny4-1.jpg,cny4-2.jpg,cny4-3.jpg
+All|cny|Auspicious Orchid Gift|279|16|item5|cny5-1.jpg,cny5-2.jpg,cny5-3.jpg
+All|cny|New Year Mixed Deluxe|299|28|item6|cny6-1.jpg,cny6-2.jpg,cny6-3.jpg
