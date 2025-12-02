@@ -159,6 +159,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $workshop_time_value = implode(', ', $selectedTimes);
 
+        $check_user_exists = "SELECT email FROM user_table WHERE email = '$email'";
+        $result_exists = $conn->query($check_user_exists);
+        
+        if ($result_exists->num_rows === 0) {
+            $_SESSION['alert'] = "Email not found. Please use a registered account.";
+            $_SESSION['alertType'] = "danger";
+            $_SESSION['old'] = $_POST;
+            $conn->close();
+            header("Location: workshop_reg.php?workshop=" . $workshopKey);
+            exit();
+        }
+
         $check_duplicate = "SELECT id FROM workshop_table WHERE email = '$email' AND workshop_title = '{$workshop['title']}'";
         $result = $conn->query($check_duplicate);
 

@@ -81,6 +81,52 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hometown = trim($_POST['hometown']);
         
         $originalEmail = $_SESSION['user']['email'];
+
+        $errors = [];
+        
+        // Validation
+        if (empty($first)){
+            $errors["first_name"] = "First Name is required";
+        } elseif (!preg_match("/^[a-zA-Z ]+$/", $first)) {
+            $errors["first_name"] = "Only letters and white space allowed";
+        }
+
+        if (empty($last)) {
+            $errors["last_name"] = "Last Name is required";
+        } elseif (!preg_match("/^[a-zA-Z ]+$/", $last)) {
+            $errors["last_name"] = "Only letters and white space allowed";
+        }
+
+        if (empty($dob)) {
+            $errors["dob"] = "Date of Birth is required";
+        }
+
+        if (empty($email)) {
+            $errors["email"] = "Email is required";
+        } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $errors["email"] = "Invalid email format";
+        } elseif ($email !== $originalEmail){
+            $errors["email"] = "Email cannot be changed.";
+        }
+
+        if (empty($hometown)) {
+            $errors["hometown"] = "Hometown is required";
+        } elseif (!preg_match("/^[a-zA-Z ,.\-]+$/", $hometown)) {
+            $errors["hometown"] = "Only letters, spaces, commas, periods and hyphens allowed";
+        }
+
+        if (!empty($errors)){
+            $_SESSION['errors'] = $errors;
+            $_SESSION['form_data'] = ['first_name' => $first,
+                'last_name' => $last,
+                'dob' => $dob,
+                'gender' => $gender,
+                'email' => $email,
+                'hometown' => $hometown
+            ];
+            header("Location: update_profile.php");
+            exit;
+        }
         
         $sql_update_user = "UPDATE user_table SET first_name = '$first', 
                             last_name = '$last', 
@@ -90,15 +136,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             hometown = '$hometown' 
                             WHERE email = '$originalEmail'";
         
-        if ($conn->query($sql_update_user)) {
-            // update user_table and account_table
-            if ($email !== $originalEmail) {
-                $sql_update_account = "UPDATE account_table SET email = '$email' WHERE email = '$originalEmail'";
-                $conn->query($sql_update_account);
-                
-                $sql_update_workshop = "UPDATE workshop_table SET email = '$email', first_name = '$first', last_name = '$last' WHERE email = '$originalEmail'";
-                $conn->query($sql_update_workshop);
-            }
+        if ($conn->query($sql_update_user)){
+            $sql_update_workshop = "UPDATE workshop_table SET email = '$email', first_name = '$first', last_name = '$last' WHERE email = '$originalEmail'";
+            $conn->query($sql_update_workshop);
             
             $userData = [
                 'First Name' => $first,
@@ -112,6 +152,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['first_name'] = $first;
             $_SESSION['user']['last_name'] = $last;
+
+            unset($_SESSION['errors']);
+            unset($_SESSION['form_data']);
             
             $_SESSION['alert'] = "Profile updated successfully!";
             $_SESSION['alertType'] = "success";
@@ -380,13 +423,19 @@ unset($registration);
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label class="form-label">First Name</label>
-                                <input type="text" class="form-control" name="first_name" 
-                                       value="<?php echo htmlspecialchars($firstName); ?>">
+                                <input type="text" class="form-control <?= isset($_SESSION['errors']['first_name']) ? 'is-invalid' : '' ?>"  name="first_name" 
+                                       value="<?= htmlspecialchars($_SESSION['form_data']['first_name'] ?? $userData['First Name'] ?? '') ?>">
+                                    <?php if (isset($_SESSION['errors']['first_name'])): ?>
+                                        <div class="error"><?= htmlspecialchars($_SESSION['errors']['first_name']) ?></div>
+                                    <?php endif; ?>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Last Name</label>
-                                <input type="text" class="form-control" name="last_name" 
-                                       value="<?php echo htmlspecialchars($lastName); ?>">
+                                <input type="text" class="form-control <?= isset($_SESSION['errors']['last_name']) ? 'is-invalid' : '' ?>" name="last_name" 
+                                       value="<?= htmlspecialchars($_SESSION['form_data']['last_name'] ?? $userData['Last Name'] ?? '') ?>">
+                                <?php if (isset($_SESSION['errors']['last_name'])): ?>
+                                    <div class="error"><?= htmlspecialchars($_SESSION['errors']['last_name']) ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         
@@ -400,21 +449,30 @@ unset($registration);
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" name="dob" 
-                                       value="<?php echo htmlspecialchars($userDOB); ?>">
+                                <input type="date" class="form-control <?= isset($_SESSION['errors']['dob']) ? 'is-invalid' : '' ?>" name="dob" 
+                                       value="<?= htmlspecialchars($_SESSION['form_data']['dob'] ?? $userData['DOB'] ?? '') ?>">
+                                <?php if (isset($_SESSION['errors']['dob'])): ?>
+                                    <div class="error"><?= htmlspecialchars($_SESSION['errors']['dob']) ?></div>
+                                <?php endif; ?>
                             </div>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="email" class="form-control" name="email" 
-                                   value="<?php echo htmlspecialchars($userEmail); ?>">
+                            <input type="email" class="form-control <?= isset($_SESSION['errors']['email']) ? 'is-invalid' : '' ?>" name="email" 
+                                   value="<?= htmlspecialchars($userData['Email'] ?? '') ?>" readonly>
+                            <?php if (isset($_SESSION['errors']['email'])): ?>
+                                <div class="error"><?= htmlspecialchars($_SESSION['errors']['email']) ?></div>
+                            <?php endif; ?>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label">Hometown</label>
-                            <input type="text" class="form-control" name="hometown" 
-                                   value="<?php echo htmlspecialchars($userHometown); ?>">
+                            <input type="text" class="form-control <?= isset($_SESSION['errors']['hometown']) ? 'is-invalid' : '' ?>" name="hometown" 
+                                   value="<?= htmlspecialchars($_SESSION['form_data']['hometown'] ?? $userData['Hometown'] ?? '') ?>">
+                            <?php if (isset($_SESSION['errors']['hometown'])): ?>
+                                <div class="error"><?= htmlspecialchars($_SESSION['errors']['hometown']) ?></div>
+                            <?php endif; ?>
                         </div>
                         
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4 profile-button">
