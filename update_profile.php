@@ -105,8 +105,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors["email"] = "Email is required";
         } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
             $errors["email"] = "Invalid email format";
-        } elseif ($email !== $originalEmail){
-            $errors["email"] = "Email cannot be changed.";
         }
 
         if (empty($hometown)) {
