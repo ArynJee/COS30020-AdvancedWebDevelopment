@@ -25,6 +25,9 @@ $errors = $_SESSION['errors'] ?? [];
 $old = $_SESSION['old'] ?? [];
 $alert = $_SESSION['alert'] ?? '';
 $alertType = $_SESSION['alertType'] ?? '';
+$userEmail = $_SESSION['user']['email'] ?? '';
+$userFirstName = $_SESSION['user']['first_name'] ?? '';
+$userLastName = $_SESSION['user']['last_name'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     unset($_SESSION['errors'], 
@@ -55,26 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     $common_name = trim($_POST['common_name'] ?? '');
     
     $errors = [];
-    
-    // name validations
-    if (empty($first_name)) {
-        $errors['first_name'] = "First Name is required";
-    } elseif (!preg_match("/^[a-zA-Z ]+$/", $first_name)) {
-        $errors['first_name'] = "Only letters and white space allowed";
-    }
-    
-    if (empty($last_name)) {
-        $errors['last_name'] = "Last Name is required";
-    } elseif (!preg_match("/^[a-zA-Z ]+$/", $last_name)) {
-        $errors['last_name'] = "Only letters and white space allowed";
-    }
-    
-    // email validation
-    if (empty($email)) {
-        $errors['email'] = "Email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "Invalid email format";
-    }
 
     if (empty($scientific_name)) {
         $errors['scientific_name'] = "Scientific Name is required";
@@ -294,34 +277,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             <div class="row mb-4">
                 <div class="col-md-6 mb-3">
                     <label class="form-label fw-medium">First Name</label>
-                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>" 
-                           name="first_name" id="first_name" placeholder="First Name" 
-                           value="<?= htmlspecialchars($old['first_name'] ?? '') ?>">
-                    <?php if (isset($errors['first_name'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['first_name']) ?></div>
-                    <?php endif; ?>
+                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>" name="first_name" id="first_name" value="<?= htmlspecialchars($userFirstName) ?>" readonly>
                 </div>
                 
                 <div class="col-md-6 mb-3">
                     <label class="form-label fw-medium">Last Name</label>
-                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>" 
-                           name="last_name" id="last_name" placeholder="Last Name"
-                           value="<?= htmlspecialchars($old['last_name'] ?? '') ?>">
-                    <?php if (isset($errors['last_name'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['last_name']) ?></div>
-                    <?php endif; ?>
+                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>" name="last_name" id="last_name" value="<?= htmlspecialchars($userLastName) ?>" readonly>
                 </div>
             </div>
 
             <div class="row mb-4">
                 <div class="col-12 mb-3">
                     <label class="form-label fw-medium">Email</label>
-                    <input type="email" class="form-control rounded-2 p-2 <?= isset($errors['email']) ? 'is-invalid' : '' ?>" 
-                           name="email" id="email" placeholder="Email"
-                           value="<?= htmlspecialchars($old['email'] ?? '') ?>">
-                    <?php if (isset($errors['email'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['email']) ?></div>
-                    <?php endif; ?>
+                    <input type="email" class="form-control rounded-2 p-2 <?= isset($errors['email']) ? 'is-invalid' : '' ?>" name="email" id="email" value="<?= htmlspecialchars($userEmail) ?>" readonly>
                 </div>
             </div>
 
