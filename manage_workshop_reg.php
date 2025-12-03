@@ -29,6 +29,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+$filteredWorkshops = $workshops;
 // prefill data
 $edit_workshop = null;
 $delete_workshop = null;
