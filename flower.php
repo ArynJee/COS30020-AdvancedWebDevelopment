@@ -176,10 +176,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         if (mysqli_query($conn, $sql_insert)) {
             $record_id = mysqli_insert_id($conn);
 
-            // step1: extract text
             $extracted_text = PDFUtils::extractTextFromPDF($file_path);
 
-            // store extracted text to database
             $extraction_success = PDFUtils::processUploadedPDF($file_path, $conn, $record_id);
 
             // store the inserted flower data in session for PDF generation
@@ -193,8 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 'plants_image' => $image_path,
                 'description' => $extracted_text ?: "Description extracted from PDF file."
             ];
-
-            // flag for enabling download pdf button
+            
             $_SESSION['show_download_button'] = true;
             $_SESSION['last_flower_data'] = $flower_data; // store data in session for pdf
 

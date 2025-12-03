@@ -25,10 +25,6 @@ class PDFUtils {
             $text = preg_replace('/\s+/', ' ', $text);
             $text = trim($text);
             
-            if (empty($text)) {
-                return "Successfully parsed the PDF, but no readable text was extracted. The PDF might contain only images or be protected.";
-            }
-            
             if (strlen($text) > 1000) {
                 $text = substr($text, 0, 1000) . '...';
             }
