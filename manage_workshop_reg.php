@@ -299,7 +299,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sql = "UPDATE workshop_table SET workshop_date = '$workshop_date', workshop_time = '$workshop_time_value', attendees = $attendees WHERE id = $id";
             
             if ($conn->query($sql)){
-                // include_once 'include/function.php';
                 createNotification(
                     $user_data['email'],
                     "Workshop Updated",
@@ -328,15 +327,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // delete workshop registration
     if(isset($_POST['delete_workshop_reg'])){
         $id = $_POST['delete_id'];
+        
+        $user_sql = "SELECT email, workshop_title FROM workshop_table WHERE id = $id";
+        $user_result = $conn->query($user_sql);
 
-        $delete_sql = "DELETE FROM workshop_table WHERE id = $id";
+        if ($user_result->num_rows > 0) {
+            $user_data = $user_result->fetch_assoc();
 
-        if ($conn->query($delete_sql)){
-            $_SESSION['alert'] = "Workshop registration deleted successfully!";
-            $_SESSION['alertType'] = "success";
-        } else{
-            $_SESSION['alert'] = "Error deleting workshop registration: " . $conn->error;
-            $_SESSION['alertType'] = "danger";
+            $delete_sql = "DELETE FROM workshop_table WHERE id = $id";
+
+            if ($conn->query($delete_sql)){
+                createNotification(
+                    $user_data['email'],
+                    "Workshop Registration Deleted",
+                    "Your workshop registration for \"{$user_data['workshop_title']}\" has been deleted by the admin.",
+                    "workshop",
+                    "deleted"
+                );
+
+                $_SESSION['alert'] = "Workshop registration deleted successfully!";
+                $_SESSION['alertType'] = "success";
+            } else{
+                $_SESSION['alert'] = "Error deleting workshop registration: " . $conn->error;
+                $_SESSION['alertType'] = "danger";
+            }
+        }else{
+            $_SESSION['alert'] = "Workshop registration not found.";
+            $_SESSION['alertType'] = "danger";           
         }
         header("Location: manage_workshop_reg.php");
         exit();
@@ -354,7 +371,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $sql = "UPDATE workshop_table SET status = '$status' WHERE id = $id";
 
         if ($conn->query($sql)){
-            // include_once 'include/function.php';
             $action = $status;
             createNotification(
                 $user_data['email'],

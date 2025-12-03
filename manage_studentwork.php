@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $update_sql = "UPDATE studentwork_table SET description = '$description' WHERE id = '$work_id'";
                 
                 if ($conn->query($update_sql)){
-                    include_once 'include/function.php';
+                    // include_once 'include/function.php';
                     createNotification(
                         $current_data['email'],
                         "Student Work Updated", 
@@ -100,16 +100,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // delete student work
     if(isset($_POST['delete_work'])){
         $work_id = $_POST['work_id'];
-
+        $user_sql = "SELECT email, workshop_title FROM studentwork_table WHERE id = '$work_id'";
+        $user_result = $conn->query($user_sql);
+    
+    if ($user_result && $user_result->num_rows > 0) {
+        $user_data = $user_result->fetch_assoc();
         $delete_sql = "DELETE FROM studentwork_table WHERE id = '$work_id'";
 
         if ($conn->query($delete_sql)){
+            createNotification(
+                $user_data['email'],
+                "Student Work Deleted",
+                "Your student work for \"{$user_data['workshop_title']}\" has been deleted by the admin.",
+                'student_work',
+                'deleted'
+            );
+
             $_SESSION['alert'] = "Student work deleted successfully!";
             $_SESSION['alertType'] = "success";
         } else{
             $_SESSION['alert'] = "Error deleting student work: " . $conn->error;
             $_SESSION['alertType'] = "danger";
         }
+    }else{
+        $_SESSION['alert'] = "Error: Student work data not found.";
+        $_SESSION['alertType'] = "danger"; 
+    }
         header("Location: manage_studentwork.php");
         exit();
     }
@@ -128,8 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "UPDATE studentwork_table SET status = '$status' WHERE id = $id";
 
             if ($conn->query($sql)){
-                include_once 'include/function.php';
-                
+                // include_once 'include/function.php';
                 createNotification(
                     $user_data['email'],
                     "Student Work " . ucfirst($status),
