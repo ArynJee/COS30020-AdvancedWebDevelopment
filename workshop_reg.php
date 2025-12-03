@@ -244,7 +244,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>" 
                            id="first_name" name="first_name" placeholder="First Name" 
-                           value="<?= htmlspecialchars($old['first_name'] ?? '') ?>" required>
+                           value="<?= htmlspecialchars($old['first_name'] ?? '') ?>">
                     <?php if (isset($errors['first_name'])): ?>
                         <div class="error"><?= htmlspecialchars($errors['first_name']) ?></div>
                     <?php endif; ?>
@@ -253,7 +253,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>" 
                            id="last_name" name="last_name" placeholder="Last Name"
-                           value="<?= htmlspecialchars($old['last_name'] ?? '') ?>" required>
+                           value="<?= htmlspecialchars($old['last_name'] ?? '') ?>">
                     <?php if (isset($errors['last_name'])): ?>
                         <div class="error"><?= htmlspecialchars($errors['last_name']) ?></div>
                     <?php endif; ?>
@@ -264,7 +264,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['contact']) ? 'is-invalid' : '' ?>" 
                            id="contact" name="contact" placeholder="Contact Number"
-                           value="<?= htmlspecialchars($old['contact'] ?? '') ?>" required>
+                           value="<?= htmlspecialchars($old['contact'] ?? '') ?>">
                     <?php if (isset($errors['contact'])): ?>
                         <div class="error"><?= htmlspecialchars($errors['contact']) ?></div>
                     <?php endif; ?>
@@ -273,7 +273,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['email']) ? 'is-invalid' : '' ?>" 
                            id="email" name="email" placeholder="Email"
-                           value="<?= htmlspecialchars($old['email'] ?? '') ?>" required>
+                           value="<?= htmlspecialchars($old['email'] ?? '') ?>">
                     <?php if (isset($errors['email'])): ?>
                         <div class="error"><?= htmlspecialchars($errors['email']) ?></div>
                     <?php endif; ?>
@@ -285,7 +285,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <label for="attendees" class="form-label fw-medium">Number of Attendees</label>
                     <input type="number" class="form-control rounded-2 p-2 <?= isset($errors['attendees']) ? 'is-invalid' : '' ?>" 
                            id="attendees" name="attendees" min="1" max="10" 
-                           value="<?= htmlspecialchars($old['attendees'] ?? '') ?>" required>
+                           value="<?= htmlspecialchars($old['attendees'] ?? '') ?>">
                     <?php if (isset($errors['attendees'])): ?>
                         <div class="error"><?= htmlspecialchars($errors['attendees']) ?></div>
                     <?php endif; ?>
@@ -304,7 +304,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="col-12 mb-3">
                     <label for="workshop_date" class="form-label fw-medium">Select Workshop Date</label>
                     <select class="form-select rounded-2 p-2 <?= isset($errors['workshop_date']) ? 'is-invalid' : '' ?>" 
-                            id="workshop_date" name="workshop_date" required onchange="updateSchedule(this)">
+                            id="workshop_date" name="workshop_date" onchange="updateSchedule(this)">
                         <option value="">Choose a date...</option>
                         
                         <?php if ($isFlexible): ?>
@@ -341,7 +341,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 mb-3">
                                 <label for="day1_time" class="form-label fw-medium">Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day1_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day1_time" name="day1_time" required>
+                                        id="day1_time" name="day1_time">
                                     <option value="">Select time...</option>
                                     <?php foreach ($workshop['timeslots']['Single Day'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -362,7 +362,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 mb-3">
                                 <label for="day1_time" class="form-label fw-medium">Day 1 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day1_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day1_time" name="day1_time" required>
+                                        id="day1_time" name="day1_time">
                                     <option value="">Select time for Day 1...</option>
                                     <?php foreach ($workshop['timeslots']['Day 1'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -378,7 +378,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 mb-3">
                                 <label for="day2_time" class="form-label fw-medium">Day 2 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day2_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day2_time" name="day2_time" required>
+                                        id="day2_time" name="day2_time">
                                     <option value="">Select time for Day 2...</option>
                                     <?php foreach ($workshop['timeslots']['Day 2'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -399,7 +399,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 col-lg-3 mb-3">
                                 <label for="day1_time" class="form-label fw-medium">Day 1 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day1_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day1_time" name="day1_time" required>
+                                        id="day1_time" name="day1_time">
                                     <option value="">Select time...</option>
                                     <?php foreach ($workshop['timeslots']['Day 1'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -415,7 +415,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 col-lg-3 mb-3">
                                 <label for="day2_time" class="form-label fw-medium">Day 2 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day2_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day2_time" name="day2_time" required>
+                                        id="day2_time" name="day2_time">
                                     <option value="">Select time...</option>
                                     <?php foreach ($workshop['timeslots']['Day 2'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -431,7 +431,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 col-lg-3 mb-3">
                                 <label for="day3_time" class="form-label fw-medium">Day 3 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day3_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day3_time" name="day3_time" required>
+                                        id="day3_time" name="day3_time">
                                     <option value="">Select time...</option>
                                     <?php foreach ($workshop['timeslots']['Day 3'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
@@ -447,7 +447,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <div class="col-md-6 col-lg-3 mb-3">
                                 <label for="day4_time" class="form-label fw-medium">Day 4 Time</label>
                                 <select class="form-select rounded-2 p-2 <?= isset($errors['day4_time']) ? 'is-invalid' : '' ?>" 
-                                        id="day4_time" name="day4_time" required>
+                                        id="day4_time" name="day4_time">
                                     <option value="">Select time...</option>
                                     <?php foreach ($workshop['timeslots']['Day 4'] as $timeslot): ?>
                                         <option value="<?= htmlspecialchars($timeslot) ?>" 
