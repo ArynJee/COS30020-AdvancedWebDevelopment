@@ -144,7 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $new_profile_image = ($gender === 'Male') ? 'profile_images/boys.jpg' : 'profile_images/girl.png';
         }
         
-        $sql_update_user = "UPDATE user_table SET first_name = '$first', last_name = '$last', dob = '$dob', gender = '$gender', email = '$email', hometown = '$hometown' WHERE email = '$originalEmail'";
+        $sql_update_user = "UPDATE user_table SET first_name = '$first', last_name = '$last', dob = '$dob', gender = '$gender', email = '$email', hometown = '$hometown', profile_image = '$new_profile_image' WHERE email = '$originalEmail'";
         
         if ($conn->query($sql_update_user)){
             $sql_update_workshop = "UPDATE workshop_table SET email = '$email', first_name = '$first', last_name = '$last' WHERE email = '$originalEmail'";
