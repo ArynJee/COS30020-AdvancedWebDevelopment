@@ -383,7 +383,7 @@ $conn->close();
         if (<?php echo ($source ?? '') === 'AI' ? 'true' : 'false'; ?>) {
             // Create a hidden form to submit
             const form = document.createElement('form');
-            form.method = 'POST';
+            form.method = 'GET';
             form.action = 'identify.php';
             
             const downloadInput = document.createElement('input');
