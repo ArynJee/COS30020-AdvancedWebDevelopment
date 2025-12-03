@@ -178,23 +178,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         if(empty($errors)){
+            // check if gender has changes
+            $original_sql = "SELECT gender, profile_image FROM user_table WHERE email = '$original_email'";
+            $original_result = $conn->query($original_sql);
+            $original_data = $original_result->fetch_assoc();
+            $original_gender = $original_data['gender'];
+            $original_profile_image = $original_data['profile_image'];
+
             // upload profile image
             $profile_image = $_POST['current_profile_image'];
-            if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0) {
+            if (isset($_FILES['profile_image']) && $_FILES['profile_image']['error'] == 0){
                 $target_dir = "profile_images/";
                 $profile_image = $target_dir . basename($_FILES["profile_image"]["name"]);
                 move_uploaded_file($_FILES["profile_image"]["tmp_name"], $profile_image);
+            }elseif ($gender !== $original_gender && (empty($original_profile_image) || $original_profile_image === 'profile_images/boys.jpg' || $original_profile_image === 'profile_images/girl.png')){
+                $profile_image = ($gender === 'Male') ? 'profile_images/boys.jpg' : 'profile_images/girl.png';
             }
 
             // update user_table
-            $user_sql = "UPDATE user_table SET first_name = '$first_name', 
-                        last_name = '$last_name', 
-                        dob = '$dob', 
-                        gender = '$gender', 
-                        hometown = '$hometown', 
-                        profile_image = '$profile_image',
-                        email = '$email'
-                        WHERE email = '$original_email'";
+            $user_sql = "UPDATE user_table SET first_name = '$first_name', last_name = '$last_name', dob = '$dob', gender = '$gender', hometown = '$hometown', profile_image = '$profile_image', email = '$email' WHERE email = '$original_email'";
 
             // update account_table
             $account_sql = "UPDATE account_table SET email = '$email' WHERE email = '$original_email'";

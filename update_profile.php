@@ -125,14 +125,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: update_profile.php");
             exit;
         }
+
+        // get the current data before update to see if gender has changed and if profile image is either of the default girl/boy image 
+        $current_sql = "SELECT gender, profile_image FROM user_table WHERE email = '$originalEmail'";
+        $current_result = $conn->query($current_sql);
+        $current_data = $current_result->fetch_assoc();
+        $current_gender = $current_data['gender'];
+        $current_profile_image = $current_data['profile_image'];
         
-        $sql_update_user = "UPDATE user_table SET first_name = '$first', 
-                            last_name = '$last', 
-                            dob = '$dob', 
-                            gender = '$gender', 
-                            email = '$email', 
-                            hometown = '$hometown' 
-                            WHERE email = '$originalEmail'";
+        $is_default_image = false;
+        if (!empty($current_profile_image)) {
+            $is_default_image = ($current_profile_image === 'profile_images/boys.jpg' || $current_profile_image === 'profile_images/girl.png');
+        }
+        
+        // update default profile image when gender changes
+        $new_profile_image = $current_profile_image;
+        if ($gender !== $current_gender && (empty($current_profile_image) || $is_default_image)){
+            $new_profile_image = ($gender === 'Male') ? 'profile_images/boys.jpg' : 'profile_images/girl.png';
+        }
+        
+        $sql_update_user = "UPDATE user_table SET first_name = '$first', last_name = '$last', dob = '$dob', gender = '$gender', email = '$email', hometown = '$hometown' WHERE email = '$originalEmail'";
         
         if ($conn->query($sql_update_user)){
             $sql_update_workshop = "UPDATE workshop_table SET email = '$email', first_name = '$first', last_name = '$last' WHERE email = '$originalEmail'";
