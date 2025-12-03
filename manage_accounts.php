@@ -120,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
 
             $user_sql = "INSERT INTO user_table (email, first_name, last_name, dob, gender, hometown, profile_image) VALUES ('$email', '$first_name', '$last_name', '$dob', '$gender', '$hometown', '$profile_image')";
-            $account_sql = "INSERT INTO account_table (email, password, type, otp_code, otp_expiry) VALUES ('$email', '$password', '$type', NULL, NULL)";
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+            $account_sql = "INSERT INTO account_table (email, password, type, otp_code, otp_expiry) VALUES ('$email', '$hashed_password', '$type', NULL, NULL)";
 
             if ($conn->query($user_sql) && $conn->query($account_sql)) {
                 $_SESSION['alert'] = "Account added successfully!";
