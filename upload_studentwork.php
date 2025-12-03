@@ -22,37 +22,22 @@ $errors = $_SESSION['errors'] ?? [];
 $old = $_SESSION['old'] ?? [];
 $alert = $_SESSION['alert'] ?? '';
 $alertType = $_SESSION['alertType'] ?? '';
+$userEmail = $_SESSION['user']['email'] ?? '';
+$userFirstName = $_SESSION['user']['first_name'] ?? '';
+$userLastName = $_SESSION['user']['last_name'] ?? '';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     unset($_SESSION['errors'], $_SESSION['old'], $_SESSION['alert'], $_SESSION['alertType']);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-    $first_name = trim($_POST['first_name'] ?? '');
-    $last_name = trim($_POST['last_name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
+    $first_name = $userFirstName;
+    $last_name = $userLastName;
+    $email = $userEmail;
     $workshop_title = trim($_POST['workshop_title'] ?? '');
     $description = trim($_POST['description'] ?? '');
     
     $errors = [];
-    
-    if (empty($first_name)) {
-        $errors['first_name'] = "First Name is required";
-    } elseif (!preg_match("/^[a-zA-Z ]+$/", $first_name)) {
-        $errors['first_name'] = "Only letters and white space allowed";
-    }
-    
-    if (empty($last_name)) {
-        $errors['last_name'] = "Last Name is required";
-    } elseif (!preg_match("/^[a-zA-Z ]+$/", $last_name)) {
-        $errors['last_name'] = "Only letters and white space allowed";
-    }
-    
-    if (empty($email)) {
-        $errors['email'] = "Email is required";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = "Invalid email format";
-    }
     
     if (empty($workshop_title)) {
         $errors['workshop_title'] = "Workshop Title is required";
@@ -258,37 +243,21 @@ $conn->close();
             
             <div class="row mb-4">
                 <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>" 
-                           name="first_name" id="first_name" placeholder="First Name" 
-                           value="<?= htmlspecialchars($old['first_name'] ?? '') ?>">
-                    <?php if (isset($errors['first_name'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['first_name']) ?></div>
-                    <?php endif; ?>
+                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['first_name']) ? 'is-invalid' : '' ?>" name="first_name" id="first_name" value="<?= htmlspecialchars($userFirstName) ?>" readonly>
                 </div>
                 
                 <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>" 
-                           name="last_name" id="last_name" placeholder="Last Name"
-                           value="<?= htmlspecialchars($old['last_name'] ?? '') ?>">
-                    <?php if (isset($errors['last_name'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['last_name']) ?></div>
-                    <?php endif; ?>
+                    <input type="text" class="form-control rounded-2 p-2 <?= isset($errors['last_name']) ? 'is-invalid' : '' ?>"  name="last_name" id="last_name" value="<?= htmlspecialchars($userLastName) ?>" readonly>
                 </div>
             </div>
 
             <div class="row mb-4">
                 <div class="col-md-6 mb-3">
-                    <input type="email" class="form-control rounded-2 p-2 <?= isset($errors['email']) ? 'is-invalid' : '' ?>" 
-                           name="email" id="email" placeholder="Email"
-                           value="<?= htmlspecialchars($old['email'] ?? '') ?>">
-                    <?php if (isset($errors['email'])): ?>
-                        <div class="error"><?= htmlspecialchars($errors['email']) ?></div>
-                    <?php endif; ?>
+                    <input type="email" class="form-control rounded-2 p-2 <?= isset($errors['email']) ? 'is-invalid' : '' ?>" name="email" id="email" placeholder="Email" value="<?= htmlspecialchars($userEmail) ?>" readonly>
                 </div>
                 
                 <div class="col-md-6 mb-3">
-                    <select class="form-select rounded-2 p-2 <?= isset($errors['workshop_title']) ? 'is-invalid' : '' ?>" 
-                            name="workshop_title" id="workshop_title" required>
+                    <select class="form-select rounded-2 p-2 <?= isset($errors['workshop_title']) ? 'is-invalid' : '' ?>" name="workshop_title" id="workshop_title" required>
                         <option value="">Choose your attended workshop...</option>
                         <?php foreach ($workshop_titles as $title): ?>
                             <option value="<?= htmlspecialchars($title) ?>" 
