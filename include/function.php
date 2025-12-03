@@ -314,13 +314,6 @@ function getWorkshopDurationType($workshop) {
     }
 }
 
-// format workshop date for display
-function formatDateForDisplay($dateArray) {
-    return array_map(function($date) {
-        return date('d/m', strtotime($date));
-    }, $dateArray);
-}
-
 // flexible dates template
 function renderFlexibleDatesTemplate($workshop, $workshopKey, $position) {
     $isLeft = $position % 2 == 0; 
@@ -480,50 +473,4 @@ function getWorkshopImageByTitle($workshopTitle) {
     }
     return 'images/default-workshop.jpg';
 }
-
-// filter out past dates from workshop options
-function filterPastDates($workshops) {
-    $currentDate = new DateTime();
-    $currentDate->setTime(0, 0, 0);
-    $filteredWorkshops = [];
-    
-    foreach ($workshops as $key => $workshop) {
-        $filteredWorkshop = $workshop;
-        
-        if ($workshop['template'] === 'flexible_dates') {
-            // filter for flexible dates
-            $filteredDates = [];
-            foreach ($workshop['dates'] as $month => $dates) {
-                $validDates = [];
-                foreach ($dates as $dateStr) {
-                    $workshopDate = DateTime::createFromFormat('Y-m-d', $dateStr);
-                    if ($workshopDate && $workshopDate >= $currentDate) {
-                        $validDates[] = $dateStr;
-                    }
-                }
-                if (!empty($validDates)) {
-                    $filteredDates[$month] = $validDates;
-                }
-            }
-            $filteredWorkshop['dates'] = $filteredDates;
-        } else {
-            // filter for fixed dates
-            $filteredSessions = [];
-            foreach ($workshop['fixed_sessions'] as $sessionName => $sessionData) {
-                $dateStr = $sessionData['dates'][0];
-                $workshopDate = DateTime::createFromFormat('Y-m-d', $dateStr);
-                if ($workshopDate && $workshopDate >= $currentDate) {
-                    $filteredSessions[$sessionName] = $sessionData;
-                }
-            }
-            $filteredWorkshop['fixed_sessions'] = $filteredSessions;
-        }
-        
-        $filteredWorkshops[$key] = $filteredWorkshop;
-    }
-    
-    return $filteredWorkshops;
-}
-
-$filteredWorkshops = filterPastDates($workshops);
 ?>
