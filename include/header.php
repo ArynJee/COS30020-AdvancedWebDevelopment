@@ -26,17 +26,6 @@
                     <ul class="navbar-nav justify-content-center flex-grow-1">
                         <?php if (isset($_SESSION['user'])): ?>
                             <?php if (($_SESSION['user_type'] ?? 'user') === 'admin'): ?>
-                                <!-- admin's links -->
-                                <!-- <li class="nav-item">
-                                    <a class="nav-link mx-lg-2 position-relative" href="manage_accounts.php">Manage Users</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link mx-lg-2 position-relative" href="manage_studentwork.php">Manage Student Works</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link mx-lg-2 position-relative" href="manage_workshop_reg.php">Manage Workshops</a>
-                                </li> -->
-
                             <!-- user's links -->
                             <?php else: ?>
                                 <li class="nav-item">
