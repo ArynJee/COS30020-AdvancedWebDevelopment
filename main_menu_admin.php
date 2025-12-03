@@ -6,9 +6,6 @@ if (!isset($_SESSION['user_type']) || $_SESSION['user_type'] !== 'admin') {
     exit();
 }
 
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
-
 $alert = $_SESSION['alert'] ?? '';
 $alertType = $_SESSION['alertType'] ?? '';
 unset($_SESSION['alert'], $_SESSION['alertType']);

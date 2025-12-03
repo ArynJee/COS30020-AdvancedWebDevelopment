@@ -22,9 +22,6 @@ if ($conn->connect_error) {
 // gemini API key
 define('GEMINI_API_KEY', 'AIzaSyBXyXdv-i8oeL4ZowmsgDCTHu3lu0YYUW0');
 
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
-
 $alert = $_SESSION['alert'] ?? '';
 $alertType = $_SESSION['alertType'] ?? '';
 unset($_SESSION['alert'], $_SESSION['alertType']);

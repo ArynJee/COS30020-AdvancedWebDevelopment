@@ -7,9 +7,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user_type'] !== 'user') {
     exit();
 }
 
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
-
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -19,9 +16,6 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
 
 $userData = null;
 

@@ -16,9 +16,6 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
-
 $upload_dir = 'images/studentworks/';
 
 $errors = $_SESSION['errors'] ?? [];

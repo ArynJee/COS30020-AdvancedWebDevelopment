@@ -16,9 +16,6 @@ if (!isset($_SESSION['user']) || $_SESSION['user_type'] !== 'user') {
     header("Location: login.php");
     exit();
 }
-
-$isLoggedIn = isset($_SESSION['user']);
-$userType = $_SESSION['user_type'] ?? 'user';
 ?>
 
 <!DOCTYPE html>

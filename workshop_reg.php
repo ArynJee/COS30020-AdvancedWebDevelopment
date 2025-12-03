@@ -2,6 +2,11 @@
 session_start();
 include 'include/function.php';
 
+if (!isset($_SESSION['user']) || $_SESSION['user_type'] !== 'user') {
+    header("Location: login.php");
+    exit();
+}
+
 // get workshop
 $workshopKey = $_GET['workshop'] ?? '';
 if (!isset($workshops[$workshopKey])) {
@@ -90,30 +95,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // check if workshop date is already over
-    if (empty($errors)) {
+    if (empty($errors)){
     $currentDate = new DateTime();
     $currentDate->setTime(0, 0, 0);
     $hasPastDate = false;
 
         if ($isFlexible) {
-            // for flexible dates, check all dates in the selected month
+            // flexible dates
             $workshop_date_selection = $_POST['workshop_date'] ?? '';
-            if (!empty($workshop_date_selection)) {
+            if (!empty($workshop_date_selection)){
                 $selected_month = trim(explode('(', $workshop_date_selection)[0]);
                 if (isset($workshop['dates'][$selected_month])) {
                     foreach ($workshop['dates'][$selected_month] as $dateStr) {
                         $workshopDate = DateTime::createFromFormat('Y-m-d', $dateStr);
-                        if ($workshopDate && $workshopDate < $currentDate) {
+                        if ($workshopDate && $workshopDate < $currentDate){
                             $hasPastDate = true;
                             break;
                         }
                     }
                 }
             }
-        } else {
-            // for fixed dates, check the selected session date
+        } else{
+            // fixed dates
             $workshop_date_selection = $_POST['workshop_date'] ?? '';
-            if (!empty($workshop_date_selection) && isset($workshop['fixed_sessions'][$workshop_date_selection])) {
+            if (!empty($workshop_date_selection) && isset($workshop['fixed_sessions'][$workshop_date_selection])){
                 $dateStr = $workshop['fixed_sessions'][$workshop_date_selection]['dates'][0];
                 $workshopDate = DateTime::createFromFormat('Y-m-d', $dateStr);
                 if ($workshopDate && $workshopDate < $currentDate) {
