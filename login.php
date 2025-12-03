@@ -25,10 +25,7 @@ if (isset($_POST['login'])){
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
     
-    $sql = "SELECT a.email, a.password, a.type, u.first_name, u.last_name 
-            FROM account_table a 
-            JOIN user_table u ON a.email = u.email 
-            WHERE a.email = '$email'";
+    $sql = "SELECT a.email, a.password, a.type, u.first_name, u.last_name FROM account_table a JOIN user_table u ON a.email = u.email WHERE a.email = '$email'";
     $result = $conn->query($sql);
     
     if ($result->num_rows === 1){
@@ -269,7 +266,7 @@ $conn->close();
             <h2 class="fw-bold text-center">Welcome Back!</h2>
             <p class="text-center text-center pb-3">We're happy to see you again. Log in to continue shopping flower bouquets.</p>
 
-            <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="login-form">
+            <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST" class="login-form" novalidate>
                 <div class="mb-3">
                     <input type="email" class="form-control" name="email" placeholder="Email Address" value="<?= htmlspecialchars($old['email'] ?? '') ?>">
                 </div>
