@@ -54,10 +54,9 @@ session_start();
                 <div class="card rounded-2 shadow">
                     <div class="card-body px-5 py-4">
                         <ul class="list-group list-group-flush">
-                            <li class="border-0 px-3 py-3">Additional Features - I would like to add additional features like add to cart functionality, website-wide search function, and sort and filter records to enhance admin's user experience.
-                            </li>
-                            <li class="border-0 px-3 py-3">Minimizing use of CSS - I would like to minimize the use of extensive CSS with efficient bootstrap classes as much as possible, as throughout this assignment, I seldom use Bootstrap's ready made template.
-                            </li>
+                            <li class="border-0 px-3 py-3"><strong>Additional Features</strong> - I would like to add additional features like add to cart functionality, website-wide search function, and sort and filter records to enhance admin's user experience.</li>
+                            <li class="border-0 px-3 py-3"><strong>Minimizing use of CSS</strong> - I would like to minimize the use of extensive CSS with efficient bootstrap classes as much as possible, as throughout this assignment, I seldom use Bootstrap's ready made templates.</li>
+                            <li class="border-0 px-3 py-3">Enhanced security - In the future, I would like to enhance the security of my website by implementing proper prepared statements to prevent SQL injections, because preventing XSS attacks with htmlspecialchars() and escaping special characters during queries with real_escape_string() will not suffice for industry level website security.</li>
                         </ul>
                     </div>
                 </div>
@@ -68,8 +67,11 @@ session_start();
                 <div class="card rounded-2 shadow">
                     <div class="card-body px-5 py-4">
                         <ul class="list-group list-group-flush">
-                            <li class="border-0 px-3 py-3">Notifications - User and Admin side notification.</li>
-                            <li class="border-0 px-3 py-3">AI Flower Identification - Used Google Flash 2.0 API to identify flower from database / AI.</li>
+                            <li class="border-0 px-3 py-3"><strong>Reset Password</strong> - Forgot password workflow is implemented, in which users can reset their password by requesting for OTP code hich will be sent to the email that they have submitted to the forgot password form, then enter the OTP code for verficication, and set their new password.</li>
+                            <li class="border-0 px-3 py-3"><strong>Notifications</strong> - User will receive notifications when changes are made to their workshop registration's date, time, and number of attendees, as well as when admin delete their workshop registration, approve it. or delete it. For admin. admin will receive notifications when user registers to new workshops or upload new student works, notifying the admin that they are pending for review. Admin will also receive notifications when users made changes to their number of attendees.</li>
+                            <li class="border-0 px-3 py-3"><strong>AI Flower Identification</strong> - Used Google Flash 2.0 API to identify flower from database / AI. Users can upload the image that they wish to identify, and Gemini Flash 2.0 will process the image and fetch flower information from database when the detected flower exists in the database, otherwise flower information will be AI generated.</li>
+                            <li class="border-0 px-3 py-3"><strong>User Dashboard</strong> - In the profile dashboard, users can navigate across three tabs within the page, handled by Bootstrap's JavaScript tab component, which is the myProfile tab where user can update their own profile information, the myWorkshop tab where user can see their past and upcoming workshops with the approval status. Users can also change the number of attendees here. Third is the myWork tab where students can see all their submitted work for their attended workshops, regardless of the approval status.</li>
+                            <li class="border-0 px-3 py-3"><strong>PDF Downloads</strong> - Using PDFParser to extract text from uploaded PDFs, and TCPDF to create new PDF files for the contribution and flower identification, in which users can download the PDFs after contributing flower information and after successfully identifying flowers.</li>
                         </ul>
                     </div>
                 </div>
@@ -80,9 +82,11 @@ session_start();
                 <div class="card rounded-2 shadow">
                     <div class="card-body px-5 py-4">
                         <ul class="list-group list-group-flush">
-                            <li class="border-0 px-3 py-3"><a href="https://youtu.be/uFSwXlxKg2U" target="_blank">Video Presentation</a>
+                            <li class="border-0 px-3 py-3">
+                                <a href="https://youtu.be/uFSwXlxKg2U" target="_blank" class="btn btn-primary">Video Presentation</a>
                             </li>
-                            <li class="border-0 px-3 py-3"><a href="index.php">Home Page</a>
+                            <li class="border-0 px-3 py-3">
+                                <a href="index.php" class="btn btn-primary">Home Page</a>
                             </li>
                         </ul>
                     </div>
