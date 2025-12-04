@@ -56,7 +56,7 @@ session_start();
                         <ul class="list-group list-group-flush">
                             <li class="border-0 px-3 py-3"><strong>Additional Features</strong> - I would like to add additional features like add to cart functionality, website-wide search function, and sort and filter records to enhance admin's user experience.</li>
                             <li class="border-0 px-3 py-3"><strong>Minimizing use of CSS</strong> - I would like to minimize the use of extensive CSS with efficient bootstrap classes as much as possible, as throughout this assignment, I seldom use Bootstrap's ready made templates.</li>
-                            <li class="border-0 px-3 py-3">Enhanced security - In the future, I would like to enhance the security of my website by implementing proper prepared statements to prevent SQL injections, because preventing XSS attacks with htmlspecialchars() and escaping special characters during queries with real_escape_string() will not suffice for industry level website security.</li>
+                            <li class="border-0 px-3 py-3"><strong>Enhanced security</strong> - In the future, I would like to enhance the security of my website by implementing proper prepared statements to prevent SQL injections, because preventing XSS attacks with htmlspecialchars() and escaping special characters during queries with real_escape_string() will not suffice for industry level website security.</li>
                         </ul>
                     </div>
                 </div>
