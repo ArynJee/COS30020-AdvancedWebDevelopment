@@ -42,8 +42,8 @@ session_start();
                 <div class="card rounded-2 shadow">
                     <div class="card-body px-5 py-4">
                         <ul class="list-group list-group-flush">
-                            <li class="border-0 px-3 py-3">Bootstrap Modal Controls - I tried to implement bootstrap multi modal for the add workshop workflow on manage_workshop_reg.php, but I failed to make it work and instead opted for handling modal with URL parameters, and used PHP to write the structure of modal body based on workshop type.</li>
-                            <li class="border-0 px-3 py-3">PDF Text Extraction - I initially tried to use only TCPDF to handle the process of extracting text from PDF and storing extracted description from PDF to flower_table, but it always extracts text into raw binary characters due to PDF version issues. As such, I integrated PDFParser with TCPDF as PDFParser is primarily used to extract text from PDF, and TCPDF is primarily used to generate PDF.</li>
+                            <li class="border-0 px-3 py-3"><strong>Bootstrap Modal Controls</strong> - I tried to implement bootstrap multi modal for the add workshop workflow on manage_workshop_reg.php, but I failed to make it work and instead opted for handling modal with URL parameters, and used PHP to write the structure of modal body based on workshop type.</li>
+                            <li class="border-0 px-3 py-3"><strong>PDF Text Extraction</strong> - I initially tried to use only TCPDF to handle the process of extracting text from PDF and storing extracted description from PDF to flower_table, but it always extracts text into raw binary characters due to PDF version issues. As such, I integrated PDFParser with TCPDF as PDFParser is primarily used to extract text from PDF, and TCPDF is primarily used to generate PDF.</li>
                         </ul>
                     </div>
                 </div>
