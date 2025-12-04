@@ -80,7 +80,7 @@ session_start();
                 <div class="card rounded-2 shadow">
                     <div class="card-body px-5 py-4">
                         <ul class="list-group list-group-flush">
-                            <li class="border-0 px-3 py-3"><a href="https://youtu.be/uFSwXlxKg2U">Video Presentation</a>
+                            <li class="border-0 px-3 py-3"><a href="https://youtu.be/uFSwXlxKg2U" target="_blank">Video Presentation</a>
                             </li>
                             <li class="border-0 px-3 py-3"><a href="index.php">Home Page</a>
                             </li>
