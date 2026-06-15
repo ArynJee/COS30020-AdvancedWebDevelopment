@@ -56,19 +56,17 @@ $conn->close();
 <body>
 <?php include "include/header.php" ?>
 
-<article class="studentwork-detail mb-5">
-    <div class="studentwork-detail-container container my-5">
-        <a href="studentworks.php" class="btn back-btn">
-            <i class="bi bi-arrow-left"></i> Back to Student Works
-        </a>
-        <h1 class="text-center mb-5 fw-bold"><?php echo $studentName; ?>'s Work Details</h1>
-        
+<article class="studentwork-detail my-5">
+    <div class="studentwork-detail-container container py-5">
         <div class="detail-card rounded-4 overflow-hidden">
             <div class="row g-0">
 
                 <!-- image slider -->
                 <div class="col-lg-7">
                     <div class="media-section position-relative">
+                        <a href="studentworks.php" class="back-btn position-absolute rounded-pill d-flex align-items-center justify-content-center text-decoration-none shadow">
+                            <i class="bi bi-arrow-left"></i>
+                        </a>
                         <div id="workCarousel" class="carousel slide h-100" data-bs-ride="carousel">
                             <div class="carousel-inner h-100">
                                 <?php foreach ($media_files as $index => $media): 
@@ -108,25 +106,32 @@ $conn->close();
                 
                 <!-- work details -->
                 <div class="col-lg-5">
-                    <div class="details-section p-4 p-lg-5 h-100 d-flex flex-column justify-content-center">
-                        <div class="detail-item mb-4 ps-3">
-                            <h4 class="text-primary mb-3 pb-2">
-                                <i class="bi bi-person-circle me-2"></i>Student Information
-                            </h4>
-                            <p class="mb-2"><strong>Name:</strong> <?php echo $studentName; ?></p>
-                            <p class="mb-2"><strong>Workshop:</strong> <?php echo htmlspecialchars($work['workshop_title']); ?></p>
-                            <p class="mb-2"><strong>Submission Date:</strong> <?php echo $studentDate; ?></p>
+                    <div class="details-section h-100 d-flex flex-column justify-content-center p-4 p-lg-5">
+
+                        <table class="sd-table w-100 mb-0">
+                            <tbody>
+                                <tr>
+                                    <th class="fw-bold text-uppercase">Student</th>
+                                    <td><?php echo htmlspecialchars($studentName); ?></td>
+                                </tr>
+                                <tr>
+                                    <th class="fw-bold text-uppercase">Workshop</th>
+                                    <td><?php echo htmlspecialchars($work['workshop_title']); ?></td>
+                                </tr>
+                                <tr>
+                                    <th class="fw-bold text-uppercase">Submitted</th>
+                                    <td><?php echo $studentDate; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <hr class="sd-divider border-0">
+
+                        <div class="sd-field">
+                            <span class="sd-label d-block text-uppercase fw-bold mb-2">About this work</span>
+                            <p class="sd-desc-text mb-0"><?php echo nl2br(htmlspecialchars($work['description'])); ?></p>
                         </div>
 
-                        <!-- description section -->
-                        <div class="description-section detail-item p-3 d-flex flex-column justify-content-center">
-                            <h4 class="text-primary mb-3">
-                                <i class="bi bi-chat-left-text me-2"></i>Work Description
-                            </h4>
-                            <div class="description-container bg-light rounded-3 p-4">
-                                <p class="mb-0"><?php echo nl2br(htmlspecialchars($work['description'])); ?></p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

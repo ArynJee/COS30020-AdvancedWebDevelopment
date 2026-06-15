@@ -1232,38 +1232,84 @@ footer a:hover{
 
 
 /* ----------- Student Work Detail ----------- */
-.studentwork-detail-container h1{
-    color: #59002b !important;
-}
-
-.media-section video, .media-section img{
-    max-height: 700px;
-}
 
 .detail-card{
-    border: 3px solid #59002b;
+    border: 1px solid rgba(89, 0, 43, 0.2);
+    box-shadow: 0 12px 50px rgba(89, 0, 43, 0.12);
+}
+
+.media-section{
+    min-height: 560px;
+}
+
+.media-section img,
+.media-section video{
+    min-height: 560px;
+    max-height: 560px;
+}
+
+.details-section{
+    background: #faaad033;
 }
 
 .media-overlay{
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 100%);
-    pointer-events: none !important;
+    background: linear-gradient(to top, rgba(20,0,10,0.82) 0%, rgba(20,0,10,0.08) 50%, transparent 100%);
+    pointer-events: none;
 }
 
 .overlay-content{
-    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+    pointer-events: auto;
 }
 
 .overlay-content h2, .overlay-content p{
     color: #faede1 !important;
 }
 
-.detail-item{
-    color: #59002b !important;
+/* right panel fields */
+.sd-label{
+    font-size: 1rem;
+    letter-spacing: 0.10em;
+    color: #59002b;
 }
 
-.detail-item h4{
-    color: #59002b !important;
-    border-bottom: 2px solid #59002b;
+.sd-value{
+    color: #1a000c;
+    line-height: 1.5;
+}
+
+.sd-table{
+    border-collapse: collapse;
+}
+
+.sd-table th,
+.sd-table td{
+    padding: 0.6rem 0.75rem;
+    vertical-align: top;
+    border: 1px solid rgba(89, 0, 43, 0.2);
+}
+
+.sd-table th{
+    width: 35%;
+    color: #59002b;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+
+.sd-table td{
+    color: #1a000c;
+    font-size: 0.9rem;
+}
+
+.sd-divider{
+    border-top: 1.5px solid rgba(89, 0, 43, 0.18);
+    margin: 1.75rem 0;
+}
+
+.sd-desc-text{
+    color: black;
+    line-height: 1.85;
+    font-size: 0.95rem;
 }
 
 .comment-section h4{
@@ -1279,46 +1325,47 @@ footer a:hover{
     z-index: 10;
 }
 
-.overlay-content{
-    pointer-events: auto;
-}
-
-/* back to student work */
 .back-btn{
-    background-color: #59002b !important;
+    background-color: rgba(89, 0, 43, 0.75);
     color: #faede1 !important;
-    transition: all 0.3s ease;
+    width: 2.5rem;
+    height: 2.5rem;
+    top: 1rem;
+    left: 1rem;
+    z-index: 20;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .back-btn:hover{
-    background-color: #6d0638 !important;
+    background-color: rgba(89, 0, 43, 1);
+    color: #faede1 !important;
+    transform: scale(1.1);
 }
 
-@media (max-width: 992px) {
-    .detail-card .row {
+@media (max-width: 992px){
+    .detail-card .row{
         flex-direction: column;
     }
-    
+
+    .media-section,
     .media-section img,
-    .media-section video {
-        min-height: 400px !important;
-    }
-    
-    .details-section {
-        padding: 2rem !important;
+    .media-section video{
+        min-height: 420px;
+        max-height: 420px;
     }
 }
 
-@media (max-width: 768px) {
-    .overlay-content h2 {
+@media (max-width: 768px){
+    .overlay-content h2{
         font-size: 1.8rem !important;
     }
-    
-    .overlay-content p {
+
+    .overlay-content p{
         font-size: 1rem !important;
     }
-    
-    .details-section {
+
+    .details-section{
         padding: 1.5rem !important;
     }
 }
