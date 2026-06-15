@@ -42,7 +42,7 @@ unset($_SESSION['alert'], $_SESSION['alertType']);
     <h1 class="fs-1 fw-bolder text-center my-5 main-menu-title">
         Admin Main Menu
     </h1>
-    <div class="card-area">
+    <div class="card-area mb-5">
       <div class="container px-4">
         <div class="d-flex flex-wrap justify-content-center gap-4">
         
@@ -93,7 +93,7 @@ unset($_SESSION['alert'], $_SESSION['alertType']);
 </article>
 
 <!-- admin footer -->
-<div class="admin-footer">
+<div class="admin-footer mt-5">
     <p class="fst-italic text-center pt-3">Acknowledgement @ COS30020 Advanced Web Technology Assignment 2</p>
 </div>
 
