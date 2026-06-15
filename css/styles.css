@@ -645,13 +645,24 @@ footer a:hover{
     background-color: #faede1;
     z-index: 2000 !important;
     transition: all 0.3s ease-in-out;
-    border-bottom: 1px solid #37011b;
-    border-top: 1px solid #37011b;
+    overflow: visible;
+}
+
+.category-nav-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 1px;
+    background-color: #37011b51;
+    pointer-events: none;
 }
 
 .category-nav-container .nav-pills .nav-link{
-    color: #d07ea6 !important;
-    border: 2px solid transparent !important;
+    color: #59002b !important;
+    border: 1px solid transparent !important;
     transition: all 0.3s ease-in-out;
 }
 
@@ -667,12 +678,14 @@ footer a:hover{
 }
 
 /* slider base */
-.image-wrapper .slide{
-    display: none;
+.image-wrapper .slider{
+    display: flex;
+    transition: transform 0.35s ease;
 }
 
-.image-wrapper .active{
-    display: block;
+.image-wrapper .slide{
+    min-width: 100%;
+    flex-shrink: 0;
 }
 
 /* navigation arrow */

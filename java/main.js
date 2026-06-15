@@ -127,21 +127,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // image slider
-document.querySelectorAll(".image-wrapper .slider").forEach(slider =>{
-  let slides = slider.querySelectorAll(".slide");
-  let prevBtn = slider.querySelector(".prev");
-  let nextBtn = slider.querySelector(".next");
+document.querySelectorAll(".image-wrapper").forEach(wrapper => {
+  const slider = wrapper.querySelector(".slider");
+  if (!slider) return;
+
+  const slides = slider.querySelectorAll(".slide");
+  const prevBtn = wrapper.querySelector(".prev");
+  const nextBtn = wrapper.querySelector(".next");
   let currentIndex = 0;
 
   function updateButtons() {
-    // reset both the arrows
     prevBtn.classList.remove("active");
     nextBtn.classList.remove("active");
 
-    // make arrow clickable according to slides
     if (currentIndex === 0) {
-      nextBtn.classList.add("active"); 
-    } else if (currentIndex === slides.length - 1){
+      nextBtn.classList.add("active");
+    } else if (currentIndex === slides.length - 1) {
       prevBtn.classList.add("active");
     } else {
       prevBtn.classList.add("active");
@@ -150,13 +151,10 @@ document.querySelectorAll(".image-wrapper .slider").forEach(slider =>{
   }
 
   function showSlide(index) {
-    slides.forEach((slide, i) => {
-      slide.classList.toggle("active", i === index);
-    });
+    slider.style.transform = `translateX(-${index * 100}%)`;
     updateButtons();
   }
 
-  // adjust arrow function rule
   prevBtn.addEventListener("click", () => {
     if (currentIndex > 0) {
       currentIndex--;
@@ -165,7 +163,7 @@ document.querySelectorAll(".image-wrapper .slider").forEach(slider =>{
   });
 
   nextBtn.addEventListener("click", () => {
-    if (currentIndex < slides.length - 1){
+    if (currentIndex < slides.length - 1) {
       currentIndex++;
       showSlide(currentIndex);
     }

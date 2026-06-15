@@ -64,22 +64,22 @@ $categories = [
         <div class="container">
             <ul class="nav nav-pills justify-content-center pt-4 pb-2 mb-0" id="categoryTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active rounded-5 fs-6 fw-semibold mx-3 mb-3 px-3 py-2" id="all-tab" data-bs-toggle="pill" data-bs-target="#all-content" type="button" role="tab" aria-controls="all-content" aria-selected="true">All</button>
+                    <button class="nav-link active rounded-5 fs-6 mx-3 mb-3 px-3 py-2" id="all-tab" data-bs-toggle="pill" data-bs-target="#all-content" type="button" role="tab" aria-controls="all-content" aria-selected="true">All</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 fw-semibold mx-3 px-3 py-2" id="valentines-tab" data-bs-toggle="pill" data-bs-target="#valentines-content" type="button" role="tab" aria-controls="valentines-content" aria-selected="false">Valentines</button>
+                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="valentines-tab" data-bs-toggle="pill" data-bs-target="#valentines-content" type="button" role="tab" aria-controls="valentines-content" aria-selected="false">Valentines</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 fw-semibold mx-3 px-3 py-2" id="grad-tab" data-bs-toggle="pill" data-bs-target="#grad-content" type="button" role="tab" aria-controls="grad-content" aria-selected="false">Graduation</button>
+                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="grad-tab" data-bs-toggle="pill" data-bs-target="#grad-content" type="button" role="tab" aria-controls="grad-content" aria-selected="false">Graduation</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 fw-semibold mx-3 px-3 py-2" id="daily-tab" data-bs-toggle="pill" data-bs-target="#daily-content" type="button" role="tab" aria-controls="daily-content" aria-selected="false">Daily Everyday</button>
+                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="daily-tab" data-bs-toggle="pill" data-bs-target="#daily-content" type="button" role="tab" aria-controls="daily-content" aria-selected="false">Daily Everyday</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 fw-semibold mx-3 px-3 py-2" id="flowerstand-tab" data-bs-toggle="pill" data-bs-target="#flowerstand-content" type="button" role="tab" aria-controls="flowerstand-content" aria-selected="false">Flower Stand</button>
+                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="flowerstand-tab" data-bs-toggle="pill" data-bs-target="#flowerstand-content" type="button" role="tab" aria-controls="flowerstand-content" aria-selected="false">Flower Stand</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 fw-semibold mx-3 px-3 py-2" id="cny-tab" data-bs-toggle="pill" data-bs-target="#cny-content" type="button" role="tab" aria-controls="cny-content" aria-selected="false">Chinese New Year</button>
+                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="cny-tab" data-bs-toggle="pill" data-bs-target="#cny-content" type="button" role="tab" aria-controls="cny-content" aria-selected="false">Chinese New Year</button>
                 </li>
             </ul>
         </div>
@@ -101,15 +101,15 @@ $categories = [
                     <div class="col-6 col-md-4 col-lg-4 product-card" data-category="<?php echo $displayName; ?>">
                         <div class="product-wrapper text-center mx-3 my-3 position-relative">
                             <div class="image-wrapper position-relative overflow-hidden">
-                                <div class="slider position-relative">
+                                <div class="slider">
                                     <?php foreach ($imgs as $i => $img): ?>
-                                        <img src="images/products/<?php echo $folderKey; ?>/<?php echo $folder; ?>/<?php echo $img; ?>" 
-                                            class="img-fluid slide w-100 <?php echo $i === 0 ? 'active' : ''; ?>" 
+                                        <img src="images/products/<?php echo $folderKey; ?>/<?php echo $folder; ?>/<?php echo $img; ?>"
+                                            class="img-fluid slide w-100"
                                             alt="<?php echo $name; ?>">
                                     <?php endforeach; ?>
-                                    <button class="slider-btn prev ms-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-left"></i></button>
-                                    <button class="slider-btn next end-0 me-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-right"></i></button>
                                 </div>
+                                <button class="slider-btn prev ms-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-left"></i></button>
+                                <button class="slider-btn next end-0 me-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-right"></i></button>
                             </div>
 
                             <div class="product-info mt-3">
@@ -139,15 +139,15 @@ $categories = [
                     <div class="col-6 col-md-4 col-lg-4 product-card">
                         <div class="product-wrapper text-center mx-3 my-3 position-relative">
                             <div class="image-wrapper position-relative overflow-hidden">
-                                <div class="slider position-relative">
+                                <div class="slider">
                                     <?php foreach ($imgs as $i => $img): ?>
-                                        <img src="images/products/<?php echo $folderKey; ?>/<?php echo $folder; ?>/<?php echo $img; ?>" 
-                                            class="img-fluid slide <?php echo $i === 0 ? 'active' : ''; ?>" 
+                                        <img src="images/products/<?php echo $folderKey; ?>/<?php echo $folder; ?>/<?php echo $img; ?>"
+                                            class="img-fluid slide w-100"
                                             alt="<?php echo $name; ?>">
                                     <?php endforeach; ?>
-                                    <button class="slider-btn prev ms-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-left"></i></button>
-                                    <button class="slider-btn next end-0 me-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-right"></i></button>
                                 </div>
+                                <button class="slider-btn prev ms-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-left"></i></button>
+                                <button class="slider-btn next end-0 me-2 position-absolute border-0 rounded-5"><i class="bi bi-chevron-right"></i></button>
                             </div>
 
                             <div class="product-info mt-3">
