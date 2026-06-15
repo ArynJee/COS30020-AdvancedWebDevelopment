@@ -1133,6 +1133,6 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 <?php endif; ?>
 <!-- javascript -->
-<script src="java/main.js"></script>
+<script src="js/main.js"></script>
 </body>
 </html>
