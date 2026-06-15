@@ -63,6 +63,69 @@ document.addEventListener("DOMContentLoaded", () =>{
   });
 });
 
+// PRODUCT PAGINATION
+const PRODUCTS_PER_PAGE = 12;
+
+function initTabPagination(tabPane) {
+    const cards = Array.from(tabPane.querySelectorAll('.product-card'));
+    const container = tabPane.querySelector('.pagination-container');
+    if (!container || cards.length === 0) return;
+
+    const totalPages = Math.ceil(cards.length / PRODUCTS_PER_PAGE);
+    let currentPage = 1;
+
+    function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * PRODUCTS_PER_PAGE;
+        const end = start + PRODUCTS_PER_PAGE;
+        cards.forEach((card, i) => {
+            card.style.display = (i >= start && i < end) ? '' : 'none';
+        });
+        renderPagination();
+    }
+
+    function renderPagination() {
+        if (totalPages <= 1) { container.innerHTML = ''; return; }
+
+        let html = '<nav aria-label="Product pages"><ul class="pagination">';
+        html += `<li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+            <button class="page-link" data-page="${currentPage - 1}"><i class="bi bi-chevron-left"></i></button></li>`;
+        for (let i = 1; i <= totalPages; i++) {
+            html += `<li class="page-item ${i === currentPage ? 'active' : ''}">
+                <button class="page-link" data-page="${i}">${i}</button></li>`;
+        }
+        html += `<li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+            <button class="page-link" data-page="${currentPage + 1}"><i class="bi bi-chevron-right"></i></button></li>`;
+        html += '</ul></nav>';
+        container.innerHTML = html;
+
+        container.querySelectorAll('[data-page]').forEach(btn => {
+            btn.addEventListener('click', function () {
+                const page = parseInt(this.dataset.page);
+                if (page >= 1 && page <= totalPages && page !== currentPage) {
+                    showPage(page);
+                    const gridTop = tabPane.querySelector('.row').getBoundingClientRect().top + window.scrollY - 80;
+                    window.scrollTo({ top: gridTop, behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    showPage(1);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const activePane = document.querySelector('#categoryTabsContent .tab-pane.active');
+    if (activePane) initTabPagination(activePane);
+
+    document.querySelectorAll('[data-bs-toggle="pill"]').forEach(tab => {
+        tab.addEventListener('shown.bs.tab', function (e) {
+            const target = document.querySelector(e.target.dataset.bsTarget);
+            if (target) initTabPagination(target);
+        });
+    });
+});
+
 // image slider
 document.querySelectorAll(".image-wrapper .slider").forEach(slider =>{
   let slides = slider.querySelectorAll(".slide");

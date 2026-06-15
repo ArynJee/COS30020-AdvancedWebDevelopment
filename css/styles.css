@@ -1786,9 +1786,16 @@ body.admin-page article{
 }
 
 .pagination .page-link:hover {
-    background-color: #d5c3b2 !important;
+    background-color: rgba(89, 0, 43, 0.1) !important;
     border-color: #59002b !important;
     color: #59002b !important;
+}
+
+.pagination .page-item.disabled .page-link {
+    background-color: #faede1 !important;
+    border-color: #b3a393 !important;
+    color: #b3a393 !important;
+    pointer-events: none;
 }
 
 /* Manage Student Work */

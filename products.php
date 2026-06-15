@@ -122,6 +122,7 @@ $categories = [
                     </div>
                     <?php } ?>
                 </div>
+                <div class="pagination-container d-flex justify-content-center mt-2 mb-5"></div>
             </div>
 
             <!-- category tabs -->
@@ -162,6 +163,7 @@ $categories = [
                     } 
                     ?>
                 </div>
+                <div class="pagination-container d-flex justify-content-center mt-2 mb-5"></div>
             </div>
             <?php endforeach; ?>
         </div>
