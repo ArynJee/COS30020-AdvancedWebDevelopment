@@ -312,12 +312,12 @@ try{
     <hr>
     
     <!-- products -->
-    <section>
+    <section class="pb-5">
         <h2 class="index-product-title text-center fw-bolder fs-1">Products</h2>
 
+        <!-- top -->
         <div class="container-fluid g-0">
             <div class="row g-3">
-                <!-- left section -->
                 <div class="col-md-6">
                     <div class="index-product-section position-relative overflow-visible d-block no-repeat">
                         <img src="images/index-product-valentines.jpg" alt="Valentines Bouquet">
@@ -330,7 +330,6 @@ try{
                     </div>
                 </div>
 
-                <!-- right section -->
                 <div class="col-md-6">
                     <div class="index-product-section position-relative overflow-hidden">
                         <img src="images/index-product-graduation.jpg" alt="Graduation Bouquet">
@@ -345,6 +344,7 @@ try{
             </div>
         </div>
 
+        <!-- mid -->
         <div class="container-fluid g-0 my-3">
             <div class="index-product-section position-relative overflow-hidden">
             <img src="images/index-product-daily.jpg" alt="Daily everyday flowers">
@@ -357,7 +357,8 @@ try{
             </div>
         </div>
 
-        <div class="container-fluid g-0 lower-container mb-5">
+        <!-- bottom -->
+        <div class="container-fluid g-0 lower-container mb-5 pb-5">
             <div class="row g-3">
                 <!-- right section -->
                 <div class="col-md-6">
@@ -384,6 +385,33 @@ try{
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- cta section: redirect to identify page -->
+    <section class="cta-identifier mx-5 mb-5">
+        <div class="container mx-auto">
+            <div class="row align-items-center g-5">
+
+                <div class="col-lg-6">
+                    <span class="cta-eyebrow d-inline-block fw-bold text-uppercase mb-2">Flower Identifier</span>
+                    <h2 class="cta-heading fw-bold mb-2">Curious About a Flower?</h2>
+                    <p class="cta-text mb-5">Not sure what flower you're looking at? Upload a photo and let our AI do the work — instantly identifying the species, name, and key details of any bloom you encounter.</p>
+                    <a href="<?php echo isset($_SESSION['user']) ? 'identify.php' : 'login.php'; ?>" class="cta-btn d-inline-flex align-items-center text-decoration-none rounded-3 px-4 py-2 fw-medium">
+                        Identify a Flower
+                        <i class="bi bi-arrow-right ms-2"></i>
+                    </a>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="cta-image-grid d-grid gap-4">
+                        <img src="images/carousel-1.jpg" alt="Flower bouquet" class="cta-img cta-img-tall w-100 h-100 object-fit-cover rounded-2">
+                        <img src="images/valentine-bouquet1.jpg" alt="Valentine bouquet" class="cta-img w-100 h-100 object-fit-cover rounded-2">
+                        <img src="images/graduation-bouquet1.jpg" alt="Graduation bouquet" class="cta-img w-100 h-100 object-fit-cover rounded-2">
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
