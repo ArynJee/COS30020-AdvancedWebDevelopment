@@ -45,7 +45,7 @@ hr{
     color:#faede1 !important;
 }
 
-.offcanvas-body .nav-link:hover, .navbar-brand:hover{
+.offcanvas-body .nav-link:hover, a.navbar-brand:hover{
     color:#d07ea6 !important;
 }
 
@@ -115,6 +115,17 @@ nav .dropdown-menu.notification-dropdown{
     .offcanvas-body .navbar-icon::before{
         content:none !important;
         display: none !important;
+    }
+
+    /* unlogged in state: center nav links by making offcanvas fill available space */
+    .navbar-guest .navbar-brand {
+        margin-right: 0 !important;
+    }
+    .navbar-guest .offcanvas {
+        flex: 1 1 auto;
+    }
+    .navbar-guest .navbar-actions {
+        margin-left: auto;
     }
 }
 

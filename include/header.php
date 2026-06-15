@@ -1,5 +1,5 @@
 <header>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-custom <?= !isset($_SESSION['user']) ? 'navbar-guest' : '' ?>">
         <div class="container-fluid">
             <!-- logo -->
             <?= !isset($_SESSION['user']) ? 
@@ -59,7 +59,7 @@
                 </div>
             </div>
             
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 navbar-actions">
                 <!-- identify -->
                 <?php if (isset($_SESSION['user']) && ($_SESSION['user_type'] ?? 'user') !== 'admin'): ?>
                     <a href="identify.php" class="navbar-icon px-2 text-decoration-none d-inline-flex align-items-center align-middle fs-5">
