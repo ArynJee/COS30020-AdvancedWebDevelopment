@@ -335,8 +335,6 @@ footer a:hover{
 }
 
 .carousel-caption a:hover{
-    background-color: #d07ea6 !important;
-    color: #faede1 !important;
     transform: translateY(-3px);
 }
 
@@ -447,14 +445,14 @@ footer a:hover{
 }
 
 .cta-btn {
-    background-color: #faede1;
-    color: #59002b;
+    color: #faede1;
+    background-color: #59002b;
     padding: 14px 32px;
     transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
 
 .cta-btn:hover {
-    background-color: #59002b;
+    background-color: #a13268;
     color: #faede1;
     transform: translateY(-3px);
 }
