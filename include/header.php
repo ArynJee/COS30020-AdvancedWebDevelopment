@@ -2,16 +2,17 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-custom <?= !isset($_SESSION['user']) ? 'navbar-guest' : '' ?>">
         <div class="container-fluid">
             <!-- logo -->
-            <?= !isset($_SESSION['user']) ? 
-                '<a class="navbar-brand me-auto" href="index.php">
-                    <img src="images/logo.jpg" alt="Root Flower website logo" width="30" height="24" class="d-inline-block align-text-top me-2">
-                    Root Flower
-                </a>' : 
-                '<span class="navbar-brand me-auto">
-                    <img src="images/logo.jpg" alt="Root Flower website logo" width="30" height="24" class="d-inline-block align-text-top me-2">
-                    Root Flower
-                </span>'
-            ?>
+            <?php if (isset($_SESSION['user']) && ($_SESSION['user_type'] ?? 'user') === 'admin'): ?>
+            <span class="navbar-brand me-auto">
+                <img src="images/logo.jpg" alt="Root Flower website logo" width="30" height="24" class="d-inline-block align-text-top me-2">
+                Root Flower
+            </span>
+            <?php else: ?>
+            <a class="navbar-brand me-auto" href="index.php">
+                <img src="images/logo.jpg" alt="Root Flower website logo" width="30" height="24" class="d-inline-block align-text-top me-2">
+                Root Flower
+            </a>
+            <?php endif; ?>
 
             <!-- offcanvas sidebar menu -->
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">

@@ -20,6 +20,12 @@ $categories = [
     "flowerstand"  => "Flower Stand",
     "cny"          => "Chinese New Year"
 ];
+
+// pre-select a category tab via ?category=<key> link (e.g. from index.php)
+$activeCategory = $_GET['category'] ?? 'all';
+if ($activeCategory !== 'all' && !isset($categories[$activeCategory])) {
+    $activeCategory = 'all';
+}
 ?>
 
 <!DOCTYPE html>
@@ -64,22 +70,22 @@ $categories = [
         <div class="container">
             <ul class="nav nav-pills justify-content-center pt-4 pb-2 mb-0" id="categoryTabs" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link active rounded-5 fs-6 mx-3 mb-3 px-3 py-2" id="all-tab" data-bs-toggle="pill" data-bs-target="#all-content" type="button" role="tab" aria-controls="all-content" aria-selected="true">All</button>
+                    <button class="nav-link <?php echo $activeCategory === 'all' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 mb-3 px-3 py-2" id="all-tab" data-bs-toggle="pill" data-bs-target="#all-content" type="button" role="tab" aria-controls="all-content" aria-selected="<?php echo $activeCategory === 'all' ? 'true' : 'false'; ?>">All</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="valentines-tab" data-bs-toggle="pill" data-bs-target="#valentines-content" type="button" role="tab" aria-controls="valentines-content" aria-selected="false">Valentines</button>
+                    <button class="nav-link <?php echo $activeCategory === 'valentines' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 px-3 py-2" id="valentines-tab" data-bs-toggle="pill" data-bs-target="#valentines-content" type="button" role="tab" aria-controls="valentines-content" aria-selected="<?php echo $activeCategory === 'valentines' ? 'true' : 'false'; ?>">Valentines</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="grad-tab" data-bs-toggle="pill" data-bs-target="#grad-content" type="button" role="tab" aria-controls="grad-content" aria-selected="false">Graduation</button>
+                    <button class="nav-link <?php echo $activeCategory === 'grad' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 px-3 py-2" id="grad-tab" data-bs-toggle="pill" data-bs-target="#grad-content" type="button" role="tab" aria-controls="grad-content" aria-selected="<?php echo $activeCategory === 'grad' ? 'true' : 'false'; ?>">Graduation</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="daily-tab" data-bs-toggle="pill" data-bs-target="#daily-content" type="button" role="tab" aria-controls="daily-content" aria-selected="false">Daily Everyday</button>
+                    <button class="nav-link <?php echo $activeCategory === 'daily' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 px-3 py-2" id="daily-tab" data-bs-toggle="pill" data-bs-target="#daily-content" type="button" role="tab" aria-controls="daily-content" aria-selected="<?php echo $activeCategory === 'daily' ? 'true' : 'false'; ?>">Daily Everyday</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="flowerstand-tab" data-bs-toggle="pill" data-bs-target="#flowerstand-content" type="button" role="tab" aria-controls="flowerstand-content" aria-selected="false">Flower Stand</button>
+                    <button class="nav-link <?php echo $activeCategory === 'flowerstand' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 px-3 py-2" id="flowerstand-tab" data-bs-toggle="pill" data-bs-target="#flowerstand-content" type="button" role="tab" aria-controls="flowerstand-content" aria-selected="<?php echo $activeCategory === 'flowerstand' ? 'true' : 'false'; ?>">Flower Stand</button>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <button class="nav-link rounded-5 fs-6 mx-3 px-3 py-2" id="cny-tab" data-bs-toggle="pill" data-bs-target="#cny-content" type="button" role="tab" aria-controls="cny-content" aria-selected="false">Chinese New Year</button>
+                    <button class="nav-link <?php echo $activeCategory === 'cny' ? 'active' : ''; ?> rounded-5 fs-6 mx-3 px-3 py-2" id="cny-tab" data-bs-toggle="pill" data-bs-target="#cny-content" type="button" role="tab" aria-controls="cny-content" aria-selected="<?php echo $activeCategory === 'cny' ? 'true' : 'false'; ?>">Chinese New Year</button>
                 </li>
             </ul>
         </div>
@@ -88,7 +94,7 @@ $categories = [
     <div class="container my-0">
         <div class="tab-content" id="categoryTabsContent">
             <!-- all products -->
-            <div class="tab-pane fade show active py-2" id="all-content" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
+            <div class="tab-pane fade <?php echo $activeCategory === 'all' ? 'show active' : ''; ?> py-2" id="all-content" role="tabpanel" aria-labelledby="all-tab" tabindex="0">
                 <div class="row g-4 mt-5 mb-5" id="productGrid">
                     <?php
                     $lines = file("products.txt", FILE_IGNORE_NEW_LINES);
@@ -127,7 +133,7 @@ $categories = [
 
             <!-- category tabs -->
             <?php foreach ($categories as $key => $displayName): ?>
-            <div class="tab-pane fade py-2" id="<?php echo $key; ?>-content" role="tabpanel" aria-labelledby="<?php echo $key; ?>-tab" tabindex="0">
+            <div class="tab-pane fade <?php echo $activeCategory === $key ? 'show active' : ''; ?> py-2" id="<?php echo $key; ?>-content" role="tabpanel" aria-labelledby="<?php echo $key; ?>-tab" tabindex="0">
                 <div class="row g-4 mt-5 mb-5">
                     <?php
                     $lines = file("products.txt", FILE_IGNORE_NEW_LINES);

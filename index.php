@@ -241,7 +241,10 @@ try{
     <title>Root Flower Home Page</title>
 </head>
 
-<body class="no-header">
+<body class="<?= isset($_SESSION['user']) ? '' : 'no-header' ?>">
+<?php if (isset($_SESSION['user'])): ?>
+    <?php include 'include/header.php'; ?>
+<?php endif; ?>
 <article>
     <!-- autoplay slides every 5 secs no pause -->
     <div id="auto-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
@@ -272,8 +275,10 @@ try{
         <div class="carousel-caption top-0 mt-5">
             <h1 class="mt-5 display-3 fw-bolder text-capitalize">Welcome to Root Flower</h1>
             <p class="fs-5">Dedicated to making pretty flower bouquets for all sorts of occasion, from graduation to Valentines.</p>
-            <a href="login.php" class="btn btn-primary btn-lg border-0 mt-4 me-5">Login</a>
-            <a href="registration.php" class="btn btn-primary btn-lg border-0 mt-4">Sign Up</a>
+            <?php if (!isset($_SESSION['user'])): ?>
+                <a href="login.php" class="btn btn-primary btn-lg border-0 mt-4 me-5">Login</a>
+                <a href="registration.php" class="btn btn-primary btn-lg border-0 mt-4">Sign Up</a>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -325,7 +330,7 @@ try{
                             <h6 class="text-uppercase">Valentines-special edition</h6>
                             <h2 class="fw-bold">Valentines</h2>
                             <p>Celebrate the romantic festive with your beloved.</p>
-                            <a href="main_menu.php" class="text-decoration-none">EXPLORE NOW</a>
+                            <a href="products.php?category=valentines" class="text-decoration-none">EXPLORE NOW</a>
                         </div>
                     </div>
                 </div>
@@ -337,7 +342,7 @@ try{
                             <h6 class="text-uppercase">Ceremonial</h6>
                             <h2 class="fw-bold">Graduation</h2>
                             <p>Beautiful flowers to congratulate a graduating person.</p>
-                            <a href="main_menu.php" class="text-decoration-none">EXPLORE NOW</a>
+                            <a href="products.php?category=grad" class="text-decoration-none">EXPLORE NOW</a>
                         </div>
                     </div>
                 </div>
@@ -352,7 +357,7 @@ try{
                 <h6 class="text-uppercase">EVERYDAY FLOWERS</h6>
                 <h2 class="fw-bold">DAILY</h2>
                 <p>"Just because" flowers of all kinds prepared to be wrapped and gifted.</p>
-                <a href="main_menu.php" class="text-decoration-none">EXPLORE NOW</a>
+                <a href="products.php?category=daily" class="text-decoration-none">EXPLORE NOW</a>
             </div>
             </div>
         </div>
@@ -368,7 +373,7 @@ try{
                             <h6 class="text-uppercase">Grand-openings</h6>
                             <h2 class="fw-bold">Flower Stands</h2>
                             <p>Send a flower stand to congratulate the opening of a business now.</p>
-                            <a href="main_menu.php" class="text-decoration-none">EXPLORE NOW</a>
+                            <a href="products.php?category=flowerstand" class="text-decoration-none">EXPLORE NOW</a>
                         </div>
                     </div>
                 </div>
@@ -381,7 +386,7 @@ try{
                             <h6 class="text-uppercase">Festive / seasonal</h6>
                             <h2 class="fw-bold">Chinese New Year</h2>
                             <p>Add life and colors to the corners of your home by ordering a CNY flower deco now.</p>
-                            <a href="main_menu.php" class="text-decoration-none">EXPLORE NOW</a>
+                            <a href="products.php?category=cny" class="text-decoration-none">EXPLORE NOW</a>
                         </div>
                     </div>
                 </div>
