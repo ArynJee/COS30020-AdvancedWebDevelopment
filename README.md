@@ -2,7 +2,8 @@
 
 A web application for Root Flower Studio, a Kuching-based floral business. The platform supports user registration, product browsing, workshop enrolment, student work galleries, flower identification via AI, and downloadable PDF reports.
 
-> **Note:** Deployment is currently underway. Further improvements and refinements are also in progress.
+> [!IMPORTANT]
+> Deployment is currently underway. Further improvements and refinements are also in progress.
 
 ---
 
@@ -66,7 +67,7 @@ A web application for Root Flower Studio, a Kuching-based floral business. The p
    git clone <repo-url> xampp/htdocs/rootflower/COS30020-AdvancedWebDevelopment
    ```
 
-2. **Start XAMPP** — ensure Apache and MySQL services are running.
+2. **Start XAMPP** and ensure Apache and MySQL services are running.
 
 3. **Create the database** by visiting:
    ```
