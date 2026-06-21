@@ -227,7 +227,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css">
 
-    <title>Root Flower Workshop Registration</title>
+    <title><?= htmlspecialchars($workshop['title']) ?> Registration | Root Flower</title>
 </head>
 
 <body>
@@ -241,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <article class="justify-content-center align-items-center d-flex my-5">
     <div class="container workshop-reg my-5 p-5 border-0 shadow rounded-2 position-relative">
-        <h2 class="fw-semibold pb-5 text-center">Workshop Registration</h2>
+        <h2 class="fw-semibold pb-5 text-center"><?= htmlspecialchars($workshop['title']) ?> Registration</h2>
         <form method="POST" action="" novalidate>
 
             <!-- personal information -->
@@ -476,8 +476,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <a href="workshops.php" class="back-to-workshop text-decoration-none">
                         <i class="bi bi-arrow-left-circle fs-2"></i>
                     </a>
-                    <button type="submit" class="btn btn-primary border-0">Submit</button>
-                    <a href="workshop_reg.php?workshop=<?= $workshopKey ?>" class="btn btn-outline-secondary">Reset</a>
+                    <button type="submit" class="reg-btn reg-btn-submit d-inline-flex align-items-center gap-2">
+                        Submit <i class="bi bi-arrow-right"></i>
+                    </button>
+                    <a href="workshop_reg.php?workshop=<?= $workshopKey ?>" class="reg-btn reg-btn-reset d-inline-flex align-items-center gap-2">
+                        Reset <i class="bi bi-arrow-counterclockwise"></i>
+                    </a>
                 </div>
             </div>
         </form>

@@ -360,17 +360,27 @@ function renderFlexibleDatesTemplate($workshop, $workshopKey, $position) {
 
                             <div class="detail-item mb-4 <?php echo $isLeft ? 'ms-3 ps-3' : 'me-3 pe-3'; ?>">
                                 <h5 class="fw-semibold mb-3"><i class="bi bi-calendar-month me-2"></i> Class Dates</h5>
-                                <div class="dates-container d-flex flex-wrap gap-2 justify-content-<?php echo $isLeft ? 'start' : 'end'; ?>">
-                                    <?php foreach ($workshop['dates'] as $month => $dates): ?>
-                                        <div class="month position-relative">
-                                            <span class="month-badge rounded-2" 
-                                                data-bs-toggle="tooltip" 
-                                                data-bs-placement="top"
-                                                data-bs-title="<?php echo implode(' , ', $dates); ?>">
-                                                <?php echo $month; ?>
-                                            </span>
-                                        </div>
-                                    <?php endforeach; ?>
+                                <div class="table-responsive">
+                                    <table class="dates-table table table-sm text-start mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Month</th>
+                                                <?php foreach (array_keys($workshop['schedule']) as $day): ?>
+                                                    <th><?php echo $day; ?></th>
+                                                <?php endforeach; ?>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($workshop['dates'] as $month => $dates): ?>
+                                                <tr>
+                                                    <td class="month-cell"><?php echo $month; ?></td>
+                                                    <?php foreach ($dates as $date): ?>
+                                                        <td><?php echo date('D, d M', strtotime($date)); ?></td>
+                                                    <?php endforeach; ?>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -415,21 +425,25 @@ function renderFixedDatesTemplate($workshop, $workshopKey, $position) {
                                 <p class="fs-6 text-muted"><?php echo $workshop['price']; ?></p>
                             </div>
     
-                            <div class="detail-item hobby-class mb-4 <?php echo $isLeft ? 'ms-3 ps-3' : 'me-3 pe-3'; ?>">
-                                <h5 class="fw-semibold mb-2"><i class="bi bi-clock me-2"></i> Class Dates Offered</h5>
-                                <div class="schedule-days p-3 rounded-2">
-                                    <?php foreach ($workshop['fixed_sessions'] as $date => $sessionData): ?>
-                                        <div class="mb-3">
-                                            <span class="badge bg-primary me-2 mb-2 px-3 py-2">
-                                                <?php echo $date; ?>
-                                            </span>
-                                            <ul class="list-unstyled <?php echo $isLeft ? 'ms-3' : 'me-3'; ?>">
-                                                <?php foreach ($sessionData['sessions'] as $session): ?>
-                                                    <li><i class="bi bi-check-circle-fill me-2"></i><?php echo $session; ?></li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                        </div>
-                                    <?php endforeach; ?>
+                            <div class="detail-item mb-4 <?php echo $isLeft ? 'ms-3 ps-3' : 'me-3 pe-3'; ?>">
+                                <h5 class="fw-semibold mb-3"><i class="bi bi-calendar-month me-2"></i> Class Dates Offered</h5>
+                                <div class="table-responsive">
+                                    <table class="dates-table table table-sm text-start mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Sessions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($workshop['fixed_sessions'] as $date => $sessionData): ?>
+                                                <tr>
+                                                    <td class="month-cell text-nowrap"><?php echo $date; ?></td>
+                                                    <td><?php echo implode(', ', $sessionData['sessions']); ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
