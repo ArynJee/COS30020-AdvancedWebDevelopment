@@ -345,16 +345,28 @@ function renderFlexibleDatesTemplate($workshop, $workshopKey, $position) {
                             </div>
 
                             <div class="detail-item mb-4 <?php echo $isLeft ? 'ms-3 ps-3' : 'me-3 pe-3'; ?>">
-                                <h5 class="fw-semibold mb-2"><i class="bi bi-clock me-2"></i> Class Schedule</h5>
-                                <div class="schedule-days p-3 rounded-2">
-                                    <?php foreach ($workshop['schedule'] as $day => $sessions): ?>
-                                        <h6 class="fw-semibold"><?php echo $day; ?></h6>
-                                        <ul class="list-unstyled <?php echo $isLeft ? 'ms-3' : 'me-3'; ?>">
-                                            <?php foreach ($sessions as $session): ?>
-                                                <li><i class="bi bi-check-circle-fill me-2"></i><?php echo $session; ?></li>
+                                <h5 class="fw-semibold mb-3"><i class="bi bi-clock me-2"></i> Class Schedule</h5>
+                                <div class="table-responsive">
+                                    <table class="dates-table table table-sm mb-0">
+                                        <thead>
+                                            <tr>
+                                                <th style="width:20%">Day</th>
+                                                <th>Sessions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($workshop['schedule'] as $day => $sessions): ?>
+                                                <tr>
+                                                    <td class="month-cell align-top"><?php echo $day; ?></td>
+                                                    <td>
+                                                        <?php foreach ($sessions as $session): ?>
+                                                            <div><i class="bi bi-check-circle-fill me-2"></i><?php echo $session; ?></div>
+                                                        <?php endforeach; ?>
+                                                    </td>
+                                                </tr>
                                             <?php endforeach; ?>
-                                        </ul>
-                                    <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 

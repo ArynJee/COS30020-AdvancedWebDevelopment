@@ -1408,7 +1408,7 @@ footer a:hover{
     background-color: #59002b;
     color: #faede1;
     border: none !important;
-    padding: 0.5rem 0.9rem;
+    padding: 0.5rem 1.1rem;
     font-weight: 600;
     white-space: nowrap;
     text-align: left !important;
@@ -1424,9 +1424,13 @@ footer a:hover{
 
 .dates-table td {
     border-color: #f0dbd0;
-    padding: 0.45rem 0.9rem;
+    padding: 1rem 1rem 1rem 1rem !important;
     vertical-align: middle;
     text-align: left !important;
+}
+
+.dates-table td > div + div {
+    margin-top: 0.4rem;
 }
 
 .dates-table .month-cell {
