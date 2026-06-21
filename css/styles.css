@@ -1919,7 +1919,36 @@ body.admin-page article{
     min-height: 300px;
 }
 
-/* Contribution Image Slider */
+/* Contribution Image Carousel */
+.flower-carousel-wrapper {
+    overflow: hidden;
+    width: 100%;
+}
+
+.flower-carousel-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: max-content;
+    gap: 1.25rem;
+    animation: flower-scroll 28s linear infinite;
+    will-change: transform;
+}
+
+.flower-carousel-track:hover {
+    animation-play-state: paused;
+}
+
+.flower-carousel-item {
+    width: calc(100vw / 4.5);
+    flex-shrink: 0;
+}
+
+@keyframes flower-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
 .flower-card {
     transition: all 0.3s ease;
 }
@@ -1938,7 +1967,7 @@ body.admin-page article{
     transform: scale(1.05);
 }
 
-.flower-card h6, .flower-card small{
+.flower-card h6, .flower-card small {
     color: #37011b;
 }
 
@@ -1960,13 +1989,17 @@ body.admin-page article{
     .row.g-4 {
         --bs-gutter-x: 1rem;
     }
-    
+
     .flower-image {
         height: 150px;
     }
-    
+
     .card-body {
         padding: 1rem !important;
+    }
+
+    .flower-carousel-item {
+        width: calc(100vw / 1.5);
     }
 }
 

@@ -371,20 +371,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     <!-- contributed flowers -->
     <div class="flower-grid-container my-5">
-        <div class="container-fluid px-4">
+        <div class="flower-carousel-wrapper">
             <?php
-            $flower_sql = "SELECT f.plants_image, f.Common_Name, f.Scientific_Name, f.first_name, f.last_name FROM flower_table f WHERE f.plants_image IS NOT NULL AND f.plants_image != '' ORDER BY RAND() LIMIT 9";
-            
+            $flower_sql = "SELECT f.plants_image, f.Common_Name, f.Scientific_Name, f.first_name, f.last_name FROM flower_table f WHERE f.plants_image IS NOT NULL AND f.plants_image != '' ORDER BY RAND() LIMIT 12";
+
             $flower_result = $conn->query($flower_sql);
-            
-            if ($flower_result->num_rows > 0): 
+
+            if ($flower_result->num_rows > 0):
+                $flowers = $flower_result->fetch_all(MYSQLI_ASSOC);
             ?>
-                <div class="row g-4">
-                    <?php while($flower = $flower_result->fetch_assoc()): ?>
-                        <div class="col">
+                <div class="flower-carousel-track">
+                    <?php foreach (array_merge($flowers, $flowers) as $flower): ?>
+                        <div class="flower-carousel-item">
                             <div class="flower-card card border-0 shadow-sm h-100 overflow-hidden rounded themed-modal">
-                                <img src="<?= htmlspecialchars($flower['plants_image']) ?>" 
-                                     alt="<?= htmlspecialchars($flower['Common_Name']) ?>" 
+                                <img src="<?= htmlspecialchars($flower['plants_image']) ?>"
+                                     alt="<?= htmlspecialchars($flower['Common_Name']) ?>"
                                      class="card-img-top flower-image object-fit-cover">
                                 <div class="card-body text-center p-3">
                                     <h6 class="card-title mb-1 fw-semibold"><?= htmlspecialchars($flower['Common_Name']) ?></h6>
@@ -395,7 +396,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                                 </div>
                             </div>
                         </div>
-                    <?php endwhile; ?>
+                    <?php endforeach; ?>
                 </div>
             <?php else: ?>
                 <div class="text-center py-5">
